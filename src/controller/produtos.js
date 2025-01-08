@@ -132,12 +132,52 @@ const deletarProduto = (req, res) => {
 }
 
 // buscar produto pelo id ou nome
+const buscarProduto = (req, res) => {
+    try {
+      const { id, nome } = req.query;
+  
+      // Verificar se pelo menos um parâmetro de busca foi fornecido
+      if (!id && !nome) {
+        return res.status(400).json({
+          message: "Por favor, forneça o ID ou parte do nome do produto para buscar.",
+        });
+      }
+  
+      // Carregar os produtos do arquivo JSON
+      const produtos = JSON.parse(fs.readFileSync(dataPath, "utf8"));
+  
+      let resultado;
+  
+      if (id) {
+        // Buscar por ID
+        resultado = produtos.find((produto) => produto.ID === id);
+      } else if (nome) {
+        // Buscar por parte do nome (ignorar maiúsculas e minúsculas)
+        resultado = produtos.filter((produto) =>
+          produto.NomeProduto.toLowerCase().includes(nome.toLowerCase())
+        );
+      }
+  
+      if (!resultado || (Array.isArray(resultado) && resultado.length === 0)) {
+        return res.status(404).json({
+          message: "Nenhum produto encontrado com os critérios fornecidos.",
+        });
+      }
 
+      res.status(200).json(resultado);
+    } catch (error) {
+      res
+        .status(500)
+        .json({ message: "Erro ao buscar o produto", error: error.message });
+    }
+};
+  
 
 module.exports = {
   adicionarProduto,
   listarProdutos,
   atualizarProduto,
-  deletarProduto
+  deletarProduto,
+  buscarProduto
 };
 
