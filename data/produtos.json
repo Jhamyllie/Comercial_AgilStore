@@ -5,5 +5,12 @@
     "Categoria": "Calçados",
     "QuantidadeEstoque": "20",
     "Preco": "R$ 350,00"
+  },
+  {
+    "ID": "2",
+    "NomeProduto": "Sapatênis",
+    "Categoria": "Calçados",
+    "QuantidadeEstoque": "15",
+    "Preco": "R$ 80,00"
   }
 ]

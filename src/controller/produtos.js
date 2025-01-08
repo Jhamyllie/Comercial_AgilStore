@@ -3,8 +3,6 @@ const path = require("path");
 // Caminho de acesso ao arquivo de dados
 const dataPath = path.join(__dirname, "../../data/produtos.json");
 
-
-
 // adiconar produto
 const adicionarProduto = (req, res) => {
     try {
@@ -33,10 +31,18 @@ const adicionarProduto = (req, res) => {
     } catch (error) {
       res.status(500).json({ message: "Erro ao adicionar o produto", error });
     }
-  };
+};
 
 // listar produtos
 
+const listarProdutos = (req, res) => {
+    try {
+      const produtos = JSON.parse(fs.readFileSync(dataPath, "utf8"));
+      res.status(200).json(produtos);
+    } catch (error) {
+      res.status(500).json({ message: "Erro ao carregar os produtos", error });
+    }
+}
 // atualizar produtos
 
 // excluir produtos
@@ -45,6 +51,7 @@ const adicionarProduto = (req, res) => {
 
 
 module.exports = {
-  adicionarProduto
+  adicionarProduto,
+  listarProdutos
 };
 
