@@ -1,0 +1,9 @@
+[
+  {
+    "ID": "1",
+    "NomeProduto": "Tênis de Corrida",
+    "Categoria": "Calçados",
+    "QuantidadeEstoque": "20",
+    "Preco": "R$ 350,00"
+  }
+]
