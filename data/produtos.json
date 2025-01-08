@@ -1,16 +1,23 @@
 [
   {
-    "ID": "2",
-    "NomeProduto": "Tênis de Corrida",
-    "Categoria": "Calçados",
-    "QuantidadeEstoque": "15",
-    "Preco": "R$ 80,00"
-  },
-  {
     "ID": "4",
     "NomeProduto": "Camiseta",
     "Categoria": "Roupas",
     "QuantidadeEstoque": "20",
     "Preco": "R$ 35,00"
+  },
+  {
+    "ID": "5",
+    "NomeProduto": "Relógio",
+    "Categoria": "Acessório",
+    "QuantidadeEstoque": "10",
+    "Preco": "R$ 350,00"
+  },
+  {
+    "ID": "6",
+    "NomeProduto": "Fones de ouvido",
+    "Categoria": "Acessório",
+    "QuantidadeEstoque": "30",
+    "Preco": "R$ 100,00"
   }
 ]
