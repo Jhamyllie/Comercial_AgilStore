@@ -51,33 +51,33 @@ const listarProdutos = (req, res) => {
     
         // ordenar
         if (ordenarPor) {
-            const camposOrdenacao = ["NomeProduto", "QuantidadeEstoque", "Preco"];
-            if (!camposOrdenacao.includes(ordenarPor)) {
-                return res.status(400).json({
-                message: `O campo de ordenação deve ser um dos seguintes: ${camposOrdenacao.join(", ")}.`,
+                const camposOrdenacao = ["NomeProduto", "QuantidadeEstoque", "Preco"];
+                if (!camposOrdenacao.includes(ordenarPor)) {
+                    return res.status(400).json({
+                    message: `O campo de ordenação deve ser um dos seguintes: ${camposOrdenacao.join(", ")}.`,
+                });
+            }
+            resultados.sort((a, b) => {
+                let valorA = a[ordenarPor];
+                let valorB = b[ordenarPor];
+        
+                // tratamento para quantidade e preço, convertendo para número
+                if (ordenarPor === "QuantidadeEstoque") {
+                    valorA = parseInt(valorA, 10);
+                    valorB = parseInt(valorB, 10);
+                } else if (ordenarPor === "Preco") {
+                    valorA = parseFloat(valorA.replace("R$", "").replace(",", "."));
+                    valorB = parseFloat(valorB.replace("R$", "").replace(",", "."));
+                }
+        
+                if (ordem === "desc") {
+                    return valorA < valorB ? 1 : -1;
+                } else {
+                    return valorA > valorB ? 1 : -1;
+                }
             });
-        }
-    
-        resultados.sort((a, b) => {
-            let valorA = a[ordenarPor];
-            let valorB = b[ordenarPor];
-    
-            // tratamento para quantidade e preço, convertendo para número
-            if (ordenarPor === "QuantidadeEstoque") {
-              valorA = parseInt(valorA, 10);
-              valorB = parseInt(valorB, 10);
-            } else if (ordenarPor === "Preco") {
-              valorA = parseFloat(valorA.replace("R$", "").replace(",", "."));
-              valorB = parseFloat(valorB.replace("R$", "").replace(",", "."));
-            }
-    
-            if (ordem === "desc") {
-              return valorA < valorB ? 1 : -1;
-            } else {
-              return valorA > valorB ? 1 : -1;
-            }
-        });
         }    
+        
         res.status(200).json(resultados);
     } catch (error) {
         res.status(500).json({ message: "Erro ao carregar os produtos", error });
