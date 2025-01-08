@@ -101,6 +101,35 @@ const atualizarProduto = (req, res) => {
 }
 
 // excluir produtos
+const deletarProduto = (req, res) => {
+    try {
+        const { id } = req.params;
+        if (!id) {
+            return res.status(400).json({ message: "Insira o ID do produto." });
+        }
+
+        const produtos = JSON.parse(fs.readFileSync(dataPath, "utf8"));
+
+    // Verificar se o produto existe no inventário
+        const produtoIndex = produtos.findIndex((produto) => produto.ID === id);
+        if (produtoIndex === -1) {
+        return res.status(404).json({ message: `Produto com ID ${id} não foi encontrado.` });
+        }
+
+        const produto = produtos[produtoIndex];
+
+        produtos.splice(produtoIndex, 1);
+
+        fs.writeFileSync(dataPath, JSON.stringify(produtos, null, 2));
+
+        res.status(200).json({
+            message: `O produto ${produto.NomeProduto}, (ID: ${id}) foi removido com sucesso!`
+        });
+
+    } catch (error) {
+        res.status(500).json({ message: "Erro ao excluir o produto. Tente novamente.", error });
+    }
+}
 
 // buscar produto pelo id ou nome
 
@@ -108,6 +137,7 @@ const atualizarProduto = (req, res) => {
 module.exports = {
   adicionarProduto,
   listarProdutos,
-  atualizarProduto
+  atualizarProduto,
+  deletarProduto
 };
 

@@ -1,16 +1,16 @@
 [
   {
-    "ID": "1",
-    "NomeProduto": "Tamanco",
-    "Categoria": "Calçados",
-    "QuantidadeEstoque": "30",
-    "Preco": "R$ 399,99"
-  },
-  {
     "ID": "2",
     "NomeProduto": "Tênis de Corrida",
     "Categoria": "Calçados",
     "QuantidadeEstoque": "15",
     "Preco": "R$ 80,00"
+  },
+  {
+    "ID": "4",
+    "NomeProduto": "Camiseta",
+    "Categoria": "Roupas",
+    "QuantidadeEstoque": "20",
+    "Preco": "R$ 35,00"
   }
 ]
