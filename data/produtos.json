@@ -1,14 +1,14 @@
 [
   {
     "ID": "1",
-    "NomeProduto": "Tênis de Corrida",
+    "NomeProduto": "Tamanco",
     "Categoria": "Calçados",
-    "QuantidadeEstoque": "20",
-    "Preco": "R$ 350,00"
+    "QuantidadeEstoque": "30",
+    "Preco": "R$ 399,99"
   },
   {
     "ID": "2",
-    "NomeProduto": "Sapatênis",
+    "NomeProduto": "Tênis de Corrida",
     "Categoria": "Calçados",
     "QuantidadeEstoque": "15",
     "Preco": "R$ 80,00"
